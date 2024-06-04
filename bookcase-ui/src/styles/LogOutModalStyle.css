@@ -1,0 +1,15 @@
+.modal-header{
+    border-color: none;
+    background-color: rgb(178, 149, 255);
+    color: white;
+    
+}
+.modal-footer{
+    border-color: rgb(178, 149, 255);
+}
+#cancel-button:hover{
+ border-color:  rgb(178, 149, 255);
+}
+#yes-button:hover{
+    border-color:  rgb(178, 149, 255);
+}

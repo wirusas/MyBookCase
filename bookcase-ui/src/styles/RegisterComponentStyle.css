@@ -1,0 +1,55 @@
+#custom-input{
+    border-color: white;
+    border-color: rgb(178, 149, 255);
+    cursor: pointer;
+}
+#custom-input:hover{
+    border-color: rgb(95, 40, 245);
+}
+#custom-button{
+    color: white;
+    background-color: rgb(119, 73, 248);
+    border: none;
+}
+#custom-button:hover{
+    background-color: rgb(95, 40, 245);
+}
+
+.Allready-member{
+    text-align: start;
+    margin-top: 30px;
+    font-size: small;
+    color: rgb(137, 137, 137);
+}
+.Login-link{
+    text-align: start;
+}
+.Login-link a{
+    text-align: start;
+    color: rgb(119, 73, 248);
+}
+.Login-link a:hover{
+    color: rgb(95, 40, 245);
+}
+
+#root{
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(119, 73, 248, 0.19));
+
+}
+.logo-1{
+    display: flex;
+}
+.logo-2{
+   display: flex;
+   justify-content: end;
+   position: relative;
+   
+}
+.card{
+    border: none;
+    background: none;
+    position: absolute;
+    top:150px
+
+}
+

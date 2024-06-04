@@ -1,0 +1,115 @@
+:root {
+  --Primary-50: #f9f5ff;
+  --Neutral-600: #5c5c5c;
+}
+
+.sidebar-projects-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 1.5rem;
+}
+
+.project-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-right: 1.5rem;
+  
+}
+
+.project-card-div {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid #000;
+  background: #f6d6d6;
+  box-shadow: 0px 1px 10px 0px rgba(242, 113, 84, 0.1);
+  
+}
+
+.progres-bar {
+  width: 60%;
+  height: 0.8rem;
+  border-radius: 0.25rem;
+  background: var(--Primary-50, #f9f5ff);
+  margin-bottom: 2rem;
+}
+
+.project-name-description-container {
+  color: var(--Neutral-600, #5c5c5c);
+  font-family: Poppins;
+  background-color: white;
+  border-radius: 0.25rem;
+  text-align: left;
+  padding: 1rem;
+  font-size: 0.8125rem;
+  margin-bottom: 0.8rem;
+  text-wrap: balance;
+  margin-top: .8rem;
+
+}
+
+.project-name-description-container h2 {
+  color: var(--Neutral-600, #5c5c5c);
+  font-family: Poppins;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  
+}
+
+.progress-bar-edit-project {
+  display: grid;
+  grid-template-columns: 9fr 1fr 1fr;
+  
+}
+
+.progress-bar-edit-project img {
+  height: 1.2rem;
+  padding: 0;
+   
+}
+
+.progress-bar-edit-project img:hover{
+  height: 1.4rem;
+}
+.time-stamp {
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  font-family: Poppins;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.create-project{
+  
+  display: flex;
+        justify-content: flex-end;
+
+
+
+}
+
+.project-name-description-container{
+  text-decoration: underline white;
+}
+
+.project-name-description-container:hover, .project-name-description-container:hover {
+  background-color: #f0f0f0;
+  text-decoration: underline  #f0f0f0;
+}
+
+
+@media (max-width: 680px) {
+
+  .sidebar {
+    display:  none;
+  }
+  .project-list{ width: 162%;
+  }}
+
+  
+ 
+  

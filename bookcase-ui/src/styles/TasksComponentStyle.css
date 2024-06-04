@@ -1,0 +1,12 @@
+.task-container {
+  display: flex;
+  width: fit-content;
+}
+
+.sidebar {
+  flex: 0 0 auto;
+}
+
+.task-desktop {
+  flex: 1;
+}
