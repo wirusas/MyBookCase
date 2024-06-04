@@ -35,6 +35,17 @@ public class WebSecurityConfig {
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
 
+                        .requestMatchers(HttpMethod.POST, "/api/books").hasAnyAuthority(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/books/{id}").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/api//allBooks").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PUT, "/api/books/{id}").hasAnyAuthority(ADMIN)
+                        .requestMatchers(HttpMethod.DELETE, "/api/books/{id}").hasAnyAuthority(ADMIN)
+                        .requestMatchers(HttpMethod.POST, "/api/books/{bookId}/favourite").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.DELETE, "/api/books/{bookId}/favourite").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/api/search").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/api/books/mybooks").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/api/books/allPagedBooks").hasAnyAuthority(ADMIN, USER)
+
                         .requestMatchers(HttpMethod.GET, "/api/users/me").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/api/users").hasAnyAuthority(ADMIN)
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{username}").hasAnyAuthority(ADMIN)

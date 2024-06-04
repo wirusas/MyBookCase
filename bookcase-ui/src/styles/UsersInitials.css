@@ -1,0 +1,13 @@
+.users-initials{
+    height: 50px;
+    width: 50px;
+   border: solid ;
+   border-radius: 50%;
+   justify-content: center;
+   align-items: center;
+   font-size: 20px;
+   border-color: rgb(178, 149, 255);
+   color: rgb(95, 40, 245);
+   background-color: white;
+   
+}

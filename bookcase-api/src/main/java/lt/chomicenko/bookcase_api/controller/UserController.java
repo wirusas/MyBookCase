@@ -20,6 +20,7 @@ import static lt.chomicenko.bookcase_api.config.SwaggerConfig.BEARER_KEY_SECURIT
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin("*")
 public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
