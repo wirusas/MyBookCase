@@ -45,7 +45,6 @@ public class BookController {
         User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
         Book book = bookMapper.toBook(createBookRequest);
         book.setId(UUID.randomUUID().toString());
-        book.addUser(user);
 
         return bookMapper.toBookDto(bookService.saveBook(book));
     }
@@ -129,4 +128,49 @@ public class BookController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-   }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @GetMapping("/bookName")
+    public List<BookDto> getBookByName(@RequestParam String bookName) {
+        List<Book> books = bookService.findByNameContaining(bookName);
+        return books.stream()
+                .map(bookMapper::toBookDto)
+                .collect(Collectors.toList());
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @GetMapping("/bookCategory")
+    public List<BookDto> getBookByCategory(@RequestParam String category) {
+        List<Book> books = bookService.findByCategory(category);
+        return books.stream()
+                .map(bookMapper::toBookDto)
+                .collect(Collectors.toList());
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("/{bookId}/comments")
+    public BookDto addCommentToBook(@AuthenticationPrincipal CustomUserDetails currentUser, @PathVariable String bookId, @RequestParam String comment) {
+        Book updatedBook = bookService.addComentToBook(bookId, currentUser.getId(), comment);
+        return bookMapper.toBookDto(updatedBook);
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("/{bookId}/ratings")
+    public BookDto addRatingToBook(@AuthenticationPrincipal CustomUserDetails currentUser, @PathVariable String bookId, @RequestParam Integer rating) {
+        Book updatedBook = bookService.addRatingToBook(bookId, currentUser.getId(), rating);
+        return bookMapper.toBookDto(updatedBook);
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @GetMapping("/{bookId}/averageRating")
+    public ResponseEntity<Double> getAverageRating(@PathVariable String bookId) {
+        Book book = bookService.validateAndGetBook(bookId);
+        Double averageRating = bookService.calculateRatingAverage(bookId, book.getRating());
+        return ResponseEntity.ok(averageRating);
+    }
+
+}
+
+
