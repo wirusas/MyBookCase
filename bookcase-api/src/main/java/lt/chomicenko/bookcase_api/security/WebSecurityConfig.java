@@ -37,8 +37,14 @@ public class WebSecurityConfig {
 
                         .requestMatchers(HttpMethod.POST, "/api/books").hasAnyAuthority(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/api/books/{id}").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/api/books/bookName").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers(HttpMethod.GET, "/api//allBooks").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers(HttpMethod.PUT, "/api/books/{id}").hasAnyAuthority(ADMIN)
+
+                        .requestMatchers(HttpMethod.PUT, "/api/books/{id}/ratings").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.GET, "/api/books/{id}/averageRating").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers(HttpMethod.PUT, "/api/books/{id}/comments").hasAnyAuthority(ADMIN, USER)
+
                         .requestMatchers(HttpMethod.DELETE, "/api/books/{id}").hasAnyAuthority(ADMIN)
                         .requestMatchers(HttpMethod.POST, "/api/books/{bookId}/favourite").hasAnyAuthority(ADMIN, USER)
                         .requestMatchers(HttpMethod.DELETE, "/api/books/{bookId}/favourite").hasAnyAuthority(ADMIN, USER)
@@ -50,6 +56,14 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/users").hasAnyAuthority(ADMIN)
                         .requestMatchers(HttpMethod.DELETE, "/api/users/{username}").hasAnyAuthority(ADMIN)
                         .requestMatchers(HttpMethod.GET, "/api/users/{username}").hasAnyAuthority(ADMIN)
+
+
+                        .requestMatchers(HttpMethod.POST, "/api/categories").hasAnyAuthority(ADMIN)
+                        .requestMatchers(HttpMethod.GET, "/api/categories").hasAnyAuthority(ADMIN,USER)
+                        .requestMatchers(HttpMethod.PUT, "/api/categories/{categoryId}").hasAnyAuthority(ADMIN)
+                        .requestMatchers(HttpMethod.DELETE, "/api/categories/{categoryId}").hasAnyAuthority(ADMIN)
+
+
                         .requestMatchers("/public/**", "/auth/**").permitAll()
                         .requestMatchers("/", "/error", "/csrf", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()

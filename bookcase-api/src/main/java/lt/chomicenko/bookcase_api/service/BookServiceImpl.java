@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -77,7 +78,6 @@ public class BookServiceImpl implements BookService {
     }
 
 
-
     @Override
     public List<Book> getBooksByUser(User user) {
         List<Book> books = user.getFollowedBooks();
@@ -94,7 +94,6 @@ public class BookServiceImpl implements BookService {
         }
         return bookRepository.findById(id.toString());
     }
-
 
 
     @Override
@@ -143,8 +142,78 @@ public class BookServiceImpl implements BookService {
     }
 
 
-     public Page<Book> findAllBooks(Pageable pageable) {
+    public Page<Book> findAllBooks(Pageable pageable) {
         return bookRepository.findAll(pageable);
     }
+
+    @Override
+    public List<Book> findByNameContaining(String bookName) {
+        if (bookName == null) {
+            throw new BookNotFoundException("Book you searched was not found");
+        }
+        return bookRepository.findByBookNameContainingIgnoreCase(bookName);
+    }
+
+    @Override
+    public List<Book> findByCategory(String category) {
+        if (category == null) {
+            throw new BookNotFoundException("Book you searched was not found");
+        }
+        return bookRepository.findByCategoryContainingIgnoreCase(category);
+    }
+
+    @Override
+    public Book addComentToBook(String bookId, Long userId, String comment) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with ID: " + bookId));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
+
+        Map<String, String> existingComments = book.getComment();
+
+        if (existingComments.containsKey(user.getUsername())) {
+
+            String existingComment = existingComments.get(user.getUsername());
+            String newComment = existingComment + "\n" + comment;
+            existingComments.put(user.getUsername(), newComment);
+        } else {
+
+            existingComments.put(user.getUsername(), comment);
+        }
+
+        book.setComment(existingComments);
+
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Book addRatingToBook(String bookId, Long userId, Integer rating) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with ID: " + bookId));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new BookNotFoundException("User not found with ID: " + userId));
+        book.getRating().add(rating);
+
+        return bookRepository.save(book);
+    }
+
+    @Override
+    public Double calculateRatingAverage(String bookId, List<Integer> ratings) {
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with ID: " + bookId));
+
+        if (ratings == null || ratings.isEmpty()) {
+            return 0.0;
+        }
+
+
+        return ratings.stream()
+                .mapToDouble(Integer::doubleValue)
+                .average()
+                .orElse(0.0);
+    }
+
 
 }

@@ -23,17 +23,27 @@ public interface BookService {
 
     void deleteBook(Book book);
 
-     List<Book> getBooksByUser(User user) throws NoBooksFoundException;
+    List<Book> getBooksByUser(User user) throws NoBooksFoundException;
 
     Optional<Book> getBookById(UUID id);
 
     Page<Book> getAllPagedBooks(Pageable pageable);
 
     Book addUserToBook(String email, UUID id);
+
     Book removeUserFromBook(String email, UUID id);
 
     Page<Book> findBookByName(String bookName, Pageable pageable);
 
     Page<Book> findAllBooks(Pageable pageable);
+
+    List<Book> findByNameContaining(String bookName);
+    List<Book> findByCategory(String category);
+
+    Book addComentToBook(String bookId, Long userId, String comment);
+
+    Book addRatingToBook(String bookId, Long userId, Integer rating);
+
+    Double calculateRatingAverage(String bookId, List<Integer> ratings);
 
 }
