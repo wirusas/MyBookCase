@@ -3,10 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import "../styles/RegisterComponentStyle.css";
 import { registerAPICall } from "../services/AuthService";
-import img2 from "../assets/logo1.svg";
-import img3 from "../assets/logo-kompiuteris.png";
-import { ToastContainer, toast } from "react-toastify";
-import "../styles/ReactToastify.css";
+import img3 from "../assets/books-and-people.svg";
+
 import {useNavigate} from "react-router-dom";
 
 const RegisterComponent = () => {
@@ -113,12 +111,10 @@ const RegisterComponent = () => {
   }
   return (
     <div className="container">
-      <ToastContainer></ToastContainer>
-      <div className="logo-1">
-        <img src={img2} alt="" />
-      </div>
+      {/* <ToastContainer></ToastContainer> */}
+      
       <div className="logo-2">
-        <img src={img3} width={400} alt="" />
+        <img src={img3} width={200} alt="books-and-people-svgrepo" />
       </div>
 
       <br />
