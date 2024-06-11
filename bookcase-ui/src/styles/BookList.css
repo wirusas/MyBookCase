@@ -1,0 +1,112 @@
+.single-book-card img{
+max-width: 250px;
+max-height: 250px;
+object-fit: contain;
+border-radius: 50px;
+
+}
+
+.single-book-card{
+    background-color:rgb(10, 10, 10);
+    color: white;
+    text-align: center;
+    padding: .8rem;
+    border-radius: 10px;
+    box-shadow: 1px -3px 8px rgba(0, 0, 0, 0.5);
+    margin: .5rem;
+    
+}
+
+.single-book-card a{
+    text-decoration: none;
+    color: white;
+    letter-spacing: .2rem;
+}
+
+.single-book-card h3:hover{
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+.booklist-div{
+    background-color: rgb(244, 246, 244);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 20px;
+    padding-right: 2rem;
+    margin-right: 2rem;
+}
+
+.booklist-section{
+    
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.book-delete-edit{
+    
+    margin: 0 auto;
+
+}
+.side-bar{
+    background-color: black;
+    max-width: 190px;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 1px -3px 8px rgba(0, 0, 0, 0.5);
+    margin: .5rem;
+}
+
+.admin-category-createbook-div{
+   
+   display: grid;
+   grid-template-columns: 1fr;
+   row-gap: 1rem;
+   padding: 1rem;
+        
+}
+
+.placeholder{
+    background-color: black;
+    color: white;
+}
+.placeholder::placeholder{
+    color: white;
+    padding: 0.5rem;
+    
+}
+
+/* Media query for screen sizes 1024px and smaller */
+@media (max-width: 1024px) {
+    .booklist-div {
+        grid-template-columns: 1fr 1fr; /* 2 columns */
+        padding-right: 1.5rem;
+        margin-right: 1.5rem;
+    }
+}
+
+/* Media query for screen sizes 768px and smaller */
+@media (max-width: 768px) {
+    .booklist-div {
+        grid-template-columns: 1fr; /* 1 column */
+        padding-right: 1rem;
+        margin-right: 1rem;
+    }
+
+    /* Media query for screen sizes 768px and smaller */
+@media (max-width: 500px) {
+    .booklist-section{
+    
+        display: inline-block;
+       
+    }
+
+    .side-bar{
+    background-color: black;
+    max-width: 90%;
+    }
+
+
+}
+}

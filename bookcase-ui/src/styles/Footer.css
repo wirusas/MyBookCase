@@ -1,0 +1,21 @@
+.footer-nawbar{
+    height: 70px;
+    background-color: black;
+    color: white;
+   text-align: left;
+   padding-left: 2rem;
+   padding-top: .5rem;
+   padding-bottom: .5rem;
+  
+}
+
+.footer-section{
+    
+    height: 160px;
+    text-align: center;
+}
+
+.footer-section h1{
+    padding-top: 85px;
+    font-size: 2.5rem;
+}

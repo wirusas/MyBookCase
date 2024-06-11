@@ -6,6 +6,8 @@ import { registerAPICall } from "../services/AuthService";
 import img3 from "../assets/books-and-people.svg";
 
 import {useNavigate} from "react-router-dom";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 const RegisterComponent = () => {
   const [name, setName] = useState("");
@@ -30,7 +32,7 @@ const RegisterComponent = () => {
     return true;
   };
   const validateUsername = (value) => {
-    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,30}$/.test(value)) {
+    if (!/^(?=.*[A-Za-z]{3,})[A-Za-z\d]{5,30}$/.test(value)) {
       setUsernameError("Required 5-30 characters, letters and numbers.");
       return false;
     }
@@ -110,6 +112,8 @@ const RegisterComponent = () => {
     }
   }
   return (
+    <>
+    <Header/>
     <div className="container">
       {/* <ToastContainer></ToastContainer> */}
       
@@ -123,7 +127,7 @@ const RegisterComponent = () => {
         <div className="col-md-7 align-items-start">
           <div className="card">
             <div>
-              <h2 className="text-start fs-1 fw-bold m-2 px-3 py-2">Register</h2>
+              <h2 className="text-start fs-1 fw-bold m-2 px-3 py-2" >Register</h2>
             </div>
 
             <div className="card-body">
@@ -235,6 +239,8 @@ const RegisterComponent = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

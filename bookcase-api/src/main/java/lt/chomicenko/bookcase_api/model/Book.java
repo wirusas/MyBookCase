@@ -43,6 +43,17 @@ public class Book {
         this.rating = rating != null ? rating : new ArrayList<>();
     }
 
+    public Book(String id, String bookName, String description, String ISBN, String imageUrl, String numberOfPages, String category) {
+        this.id = id;
+        this.bookName = bookName;
+        this.description = description;
+        this.ISBN = ISBN;
+        this.imageUrl = imageUrl;
+        this.numberOfPages = numberOfPages;
+        this.category = category;
+    }
+
+
     @PrePersist
     public void onPrePersist() {
         createdAt = ZonedDateTime.now();

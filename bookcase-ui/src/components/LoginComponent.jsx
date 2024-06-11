@@ -20,14 +20,21 @@ const LoginComponent = () => {
         await loginAPICall(username, password)
             .then((response) => {
                 console.log(response.data); 
-                const token = response.data.accsessToken;
+                const token = response.data.accessToken;
                 storeToken(token);
                 const decodedToken = jwtDecode(token);
                 const roles = decodedToken.rol;
                 console.log(roles);
                 saveLoggedInUser(username);
                 localStorage.setItem('userRoles', JSON.stringify(roles));
-                navigator("/books");
+    
+                // Redirect based on user role
+                if (roles.includes('ADMIN')) {
+                    navigator("/admindashboard");
+                } else {
+                    navigator("/userdashboard");
+                }
+    
                 window.location.reload(false);
                 console.log(username);
             }).catch(error => {
@@ -42,6 +49,8 @@ const LoginComponent = () => {
                 setPassword("");
             });
     }
+    
+    
 
     return (
         <div className="container">
