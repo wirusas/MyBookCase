@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { isUserLoggedIn } from "./services/AuthService";
 import RegisterComponent from "./components/RegisterComponent";
 import LoginComponent from "./components/LoginComponent";
-import { BooksList } from "./components/BookList";
+import { UserDashboard } from "./components/UserDashboard";
+import { AdminDashboard } from "./components/AdminDashboard";
+import { SingleBook } from "./components/SingleBook";
+import { FavouriteBooks } from "./components/FavouriteBooks";
 
 
 function App() {
@@ -17,9 +20,13 @@ function App() {
   }
   return (
     <>
+    
       <BrowserRouter>
+
         <Routes>
-        <Route path="/books" element={<BooksList />} />
+          
+        
+        <Route path="/favouritebooks" element={<FavouriteBooks />} />
           
           {/* /http://localhost:3000 */}
           <Route current path="/" element={<LoginComponent />}></Route>
@@ -32,10 +39,28 @@ function App() {
           {/* /http://localhost:3000/books */}
 
           <Route
-            path="/books"
+            path="/userdashboard"
             element={
               <AuthenticatedRoute>
-                <BooksList />
+                <UserDashboard/>
+              </AuthenticatedRoute>
+            }
+          ></Route>
+
+<Route
+            path="/admindashboard"
+            element={
+              <AuthenticatedRoute>
+                <AdminDashboard/>
+              </AuthenticatedRoute>
+            }
+          ></Route>
+
+<Route
+            path="/singlebook/:id"
+            element={
+              <AuthenticatedRoute>
+                <SingleBook/>
               </AuthenticatedRoute>
             }
           ></Route>

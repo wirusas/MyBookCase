@@ -13,5 +13,7 @@ public class BookCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String bookCategory;
-
+    public BookCategory(String bookCategory) {
+        this.bookCategory = bookCategory;
+    }
 }

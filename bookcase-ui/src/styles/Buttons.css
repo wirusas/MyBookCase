@@ -1,0 +1,20 @@
+.main-button{
+    background-color: rgb(116, 114, 114);
+    color: white;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.main-button:hover{
+    background-color: rgb(71, 69, 69);
+}
+
+.action-list li{
+    background-color:rgb(116, 114, 114);
+    color: white;
+}
+
+.action-list li:hover{
+    background-color: rgb(71, 69, 69);
+
+}

@@ -54,7 +54,7 @@ public class BookController {
     @PutMapping("/{id}")
     public BookDto editBook(@AuthenticationPrincipal CustomUserDetails currentUser,
                             @Valid @RequestBody EditBookRequest editBookRequest,
-                            @PathVariable UUID id) {
+                            @PathVariable String id) {
         User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
         Book book = bookMapper.toBook(editBookRequest);
         return bookMapper.toBookDto(bookService.editBook(id, book));
@@ -62,7 +62,7 @@ public class BookController {
 
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
     @DeleteMapping("/{id}")
-    public BookDto deleteBook(@PathVariable UUID id) {
+    public BookDto deleteBook(@PathVariable String id) {
         Book book = bookService.validateAndGetBook(id.toString());
         bookService.deleteBook(book);
         return bookMapper.toBookDto(book);
@@ -90,9 +90,9 @@ public class BookController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{bookId}/favourite")
     public BookDto addToFavourite(@AuthenticationPrincipal CustomUserDetails currentUser,
-                                  @PathVariable UUID bookId) {
+                                  @PathVariable String bookId) {
         User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
-        Book book = bookService.validateAndGetBook(bookId.toString());
+        Book book = bookService.validateAndGetBook(bookId);
         bookService.addUserToBook(user.getEmail(), bookId);
         return bookMapper.toBookDto(book);
     }
@@ -100,7 +100,7 @@ public class BookController {
     @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
     @DeleteMapping("/{bookId}/favourite")
     public ResponseEntity<?> removeFromFavourite(@AuthenticationPrincipal CustomUserDetails currentUser,
-                                                 @PathVariable UUID bookId) {
+                                                 @PathVariable String bookId) {
         try {
             User user = userService.validateAndGetUserByUsername(currentUser.getUsername());
             Book updatedBook = bookService.removeUserFromBook(user.getEmail(), bookId);
@@ -169,6 +169,13 @@ public class BookController {
         Book book = bookService.validateAndGetBook(bookId);
         Double averageRating = bookService.calculateRatingAverage(bookId, book.getRating());
         return ResponseEntity.ok(averageRating);
+    }
+
+    @Operation(security = {@SecurityRequirement(name = BEARER_KEY_SECURITY_SCHEME)})
+    @GetMapping("/{id}")
+    public BookDto getBookById(@PathVariable String id) {
+        Book book = bookService.validateAndGetBook(id);
+        return bookMapper.toBookDto(book);
     }
 
 }

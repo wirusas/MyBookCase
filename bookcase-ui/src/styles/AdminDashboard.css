@@ -1,0 +1,17 @@
+.category-create-book-button{
+    display: flex;
+    justify-content: space-around;
+   
+}
+
+.login-logout-div{
+    background-color: rgb(227, 224, 238);
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.loged-user{
+    margin-right: 1rem;
+}

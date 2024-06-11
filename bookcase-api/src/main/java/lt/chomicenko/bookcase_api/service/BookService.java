@@ -19,19 +19,19 @@ public interface BookService {
 
     Book saveBook(Book book);
 
-    Book editBook(UUID id, Book book);
+    Book editBook(String id, Book book);
 
     void deleteBook(Book book);
 
     List<Book> getBooksByUser(User user) throws NoBooksFoundException;
 
-    Optional<Book> getBookById(UUID id);
+    Optional<Book> getBookById(String id);
 
     Page<Book> getAllPagedBooks(Pageable pageable);
 
-    Book addUserToBook(String email, UUID id);
+    Book addUserToBook(String email, String id);
 
-    Book removeUserFromBook(String email, UUID id);
+    Book removeUserFromBook(String email, String id);
 
     Page<Book> findBookByName(String bookName, Pageable pageable);
 

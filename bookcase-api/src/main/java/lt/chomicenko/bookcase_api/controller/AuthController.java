@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
+
 public class AuthController {
+
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -63,5 +65,4 @@ public class AuthController {
         user.setRole(WebSecurityConfig.USER);
         return user;
     }
-
 }

@@ -1,0 +1,12 @@
+.back-button-favourite{
+    background-color: black;
+    text-align: center;
+    margin: 0 auto;
+    
+     
+
+}
+
+.back-button-favourite:hover{
+    background-color: rgb(84, 82, 82);
+}

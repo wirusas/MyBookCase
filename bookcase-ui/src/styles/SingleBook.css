@@ -1,0 +1,18 @@
+.single-book-card li{
+    list-style-type: none;
+   }
+
+.single-book-card ul{
+    text-align: center;
+    margin: 0 auto;
+    max-width: 60%;
+    padding-left: 0;
+
+    
+}
+.back-button{
+    background-color: black;
+    max-width: 250px;
+    text-align: center;
+    margin: 1rem auto;
+}

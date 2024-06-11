@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Book editBook(UUID id, Book updatedBook) {
+    public Book editBook(String id, Book updatedBook) {
         Book existingBook = bookRepository.findById(id.toString())
                 .orElseThrow(() -> new BookNotFoundException("Book not found with ID: " + id));
 
@@ -88,7 +88,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Optional<Book> getBookById(UUID id) {
+    public Optional<Book> getBookById(String id) {
         if (id == null) {
             throw new IllegalArgumentException("ID cannot be null");
         }
@@ -104,7 +104,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Book addUserToBook(String userEmail, UUID bookId) {
+    public Book addUserToBook(String userEmail, String bookId) {
         Book existingBook = validateAndGetBook(bookId.toString());
         User user = userRepository.findUserByEmail(userEmail);
 
@@ -121,7 +121,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public Book removeUserFromBook(String userEmail, UUID bookId) {
+    public Book removeUserFromBook(String userEmail, String bookId) {
         Book existingBook = validateAndGetBook(bookId.toString());
         User user = userRepository.findUserByEmail(userEmail);
 
